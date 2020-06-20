@@ -57,6 +57,8 @@
       <!-- Nav Item - Pages Collapse Menu -->
 
       <x-admin-sidebar-posts-links></x-admin-sidebar-posts-links>
+      
+      <x-admin-sidebar-users-links></x-admin-sidebar-users-links>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -324,7 +326,7 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  
+
   <!-- Bootstrap core JavaScript-->
   <script src="{{asset('vendor/jquery/jquery.js')}}"></script>
   <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>

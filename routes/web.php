@@ -30,5 +30,15 @@ Route::middleware('auth')->group(function(){
 
     Route::patch('/admin/posts/{post}/update', 'PostController@update')->name('post.update');
 
-    Route::get('admin/users/{user}/profile', 'UserController@show')->name('user.profile.show'); //the name is used with blade, we add {{route('the.name.of.route')}} to go to that specific route in html
+    Route::get('admin/users/profile', 'UserController@show')->name('user.profile.show'); //the name is used with blade, we add {{route('the.name.of.route')}} to go to that specific route in html
+    Route::put('admin/users/update', 'UserController@update')->name('user.profile.update');
+
+    Route::get('admin/users', 'UserController@index')->name('users.index');
+    Route::delete('/admin/users/{user}/delete', 'UserController@destroy')->name('user.destroy');
+    /*
+    to update files i use PUT
+    to view i use GET
+    to store i use POST
+    to delete
+    */
 });
