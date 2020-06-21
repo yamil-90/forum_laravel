@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function(){
     Route::get('admin/users/profile', 'UserController@show')->name('user.profile.show'); //the name is used with blade, we add {{route('the.name.of.route')}} to go to that specific route in html
     Route::put('admin/users/update', 'UserController@update')->name('user.profile.update');
 
-    Route::get('admin/users', 'UserController@index')->name('users.index');
+
     Route::delete('/admin/users/{user}/delete', 'UserController@destroy')->name('user.destroy');
     /*
     to update files i use PUT
@@ -41,4 +41,7 @@ Route::middleware('auth')->group(function(){
     to store i use POST
     to delete
     */
+});
+Route::middleware(['role:ADMIN'])->group(function(){
+    Route::get('admin/users', 'UserController@index')->name('users.index');
 });

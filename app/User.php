@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -61,7 +62,7 @@ class User extends Authenticatable
 
         foreach($this->roles as $role){
 
-            if($role->name==$role_name)
+            if(Str::lower($role->name)==Str::lower($role_name))
 
             return true;
 

@@ -46,7 +46,9 @@
                          </tfoot>
                          <tbody>
                              @foreach($users as $user)
+                             @if($user->id!=auth()->user()->id)
                            <tr>
+
                             <th>{{$user->id}}</th>
                                <td><a href="">{{$user->username}}</a></td>
                                <td>{{$user->name}}</td>
@@ -67,6 +69,7 @@
                                    {{-- @endcan --}}
                                </td>
                            </tr>
+                           @endif
                            @endforeach
                          </tbody>
                        </table>
