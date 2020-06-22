@@ -50,7 +50,7 @@
                            <tr>
 
                             <th>{{$user->id}}</th>
-                               <td><a href="">{{$user->username}}</a></td>
+                               <td><a href="{{route('user.profile.show', $user)}}">{{$user->username}}</a></td>
                                <td>{{$user->name}}</td>
                                <td>
                                 <img height="50px" src="{{asset($user->avatar)}}" alt="">

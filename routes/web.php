@@ -30,8 +30,9 @@ Route::middleware('auth')->group(function(){
 
     Route::patch('/admin/posts/{post}/update', 'PostController@update')->name('post.update');
 
-    Route::get('admin/users/profile', 'UserController@show')->name('user.profile.show'); //the name is used with blade, we add {{route('the.name.of.route')}} to go to that specific route in html
-    Route::put('admin/users/update', 'UserController@update')->name('user.profile.update');
+     //the name is used with blade, we add {{route('the.name.of.route')}} to go to that specific route in html
+    Route::put('admin/users/{user}/update', 'UserController@update')->name('user.profile.update');
+
 
 
     Route::delete('/admin/users/{user}/delete', 'UserController@destroy')->name('user.destroy');
@@ -41,7 +42,12 @@ Route::middleware('auth')->group(function(){
     to store i use POST
     to delete
     */
+
+    Route::middleware(['can:view,user'])->group(function(){
+        Route::get('admin/users/{user}/profile', 'UserController@show')->name('user.profile.show');
+    });
 });
-Route::middleware(['role:ADMIN'])->group(function(){
+
+Route::middleware(['role:ADMIN', 'auth'])->group(function(){
     Route::get('admin/users', 'UserController@index')->name('users.index');
 });

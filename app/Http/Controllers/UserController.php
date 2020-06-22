@@ -8,20 +8,19 @@ use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
     //
-    public function show(){
-        $user= auth()->user();
-        return view('admin.users.profile',['user'=>$user]);
+    public function show(User $user){
+        return view('admin.users.profile', ['user'=>$user]);
     }
 
     public function index(){
 
-
         $users = User::all();
+
         return view('admin.users.index', ['users'=>$users]);
 
     }
-    public function update (){
-        $user=auth()->user();
+    public function update (User $user){
+
         $inputs = request()->validate([
             'name'=>['required', 'string', 'max:255', 'alpha_dash'],
             'username'=>['required', 'min:5', 'string', 'max:25', 'alpha_dash'],
