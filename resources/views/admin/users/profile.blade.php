@@ -92,8 +92,7 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Slug</th>
-                            <th>Atach</th>
-                            <th>Detach</th>
+                            <th>Atach/Detach</th>
                         </tr>
                 </thead>
                 <tfoot>
@@ -102,8 +101,7 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Slug</th>
-                            <th>Atach</th>
-                            <th>Detach</th>
+                            <th>Atach/Detach</th>
 
                         </tr>
                 </tfoot>
@@ -122,8 +120,27 @@
                             <td>{{$role->id}}</td>
                             <td>{{$role->name}}</td>
                             <td>{{$role->slug}}</td>
-                            <td><button class="btn btn-primary">Attach</button></td>
-                            <td><button class="btn btn-danger">Detach</button></td>
+                            <td>
+                                @if(!$user->roles->contains($role))
+                                <form method="post" action="{{route('user.role.attach', $user)}}">
+                                    @method('PUT')
+                                    @csrf
+                                    <input type="hidden" name="role" value="{{$role->id}}">
+                                    <button class="btn btn-primary"
+                                    >Attach</button>
+                                </form>
+
+                            @else
+                                <form method="post" action="{{route('user.role.detach', $user)}}">
+                                @method('PUT')
+                                @csrf
+                                <input type="hidden" name="role" value="{{$role->id}}">
+                                <button class="btn btn-danger"
+
+                                    >Detach</button>
+                            </form>
+                            @endif
+                        </td>
 
                         </tr>
                     @endforeach
