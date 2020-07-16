@@ -37,7 +37,7 @@
             </a>
           </li>
           @if(!Auth::check())
-          
+
           <li class="nav-item">
             <a class="nav-link" href="{{route('login')}}">Login</a>
           </li>
@@ -45,7 +45,7 @@
             <a class="nav-link" href="{{route('register')}}">Register</a>
           </li>
           @else
-        
+
           <li class="nav-item">
             <a class="nav-link" href="{{route('admin.index')}}">Admin</a>
           </li>
@@ -59,6 +59,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
           </li>
+          @if(Auth::check())
+            <li> <x-admin.top-nav.admin-top-navbar-user-info></x-admin.top-nav.admin-top-navbar-user-info></li>
+          @endif
         </ul>
       </div>
     </div>
