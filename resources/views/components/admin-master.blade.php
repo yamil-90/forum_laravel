@@ -26,7 +26,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
@@ -60,6 +60,7 @@
       @if(auth()->user()->userHasRole('Admin'))
          <x-admin.sidebar.admin-sidebar-users-links></x-admin.sidebar.admin-sidebar-users-links>
          <x-admin.sidebar.authorization-links></x-admin.sidebar.authorization-links>
+         <x-admin.sidebar.categories-links></x-admin.sidebar.admin-sidebar-categories-links>
          @endif
 
       <!-- Nav Item - Utilities Collapse Menu -->

@@ -1,9 +1,9 @@
 <x-home-master>
-	
+
 	@section('content')
-		
+
 		<h1>Post!!!</h1>
-		
+
         <!-- Title -->
         <h1 class="mt-4">
           {{$post->title}}</h1>
@@ -16,7 +16,7 @@
         <hr>
 
         <!-- Date/Time -->
-        <p>Posted on {{$post->created_at->diffForHumans()}}</p>
+        <p>Posted {{$post->created_at->diffForHumans()}}</p>
 
         <hr>
 
@@ -27,8 +27,8 @@
 
         <!-- Post Content -->
         <p class="lead">{{$post->body}}</p>
-  
-        <hr> 
+
+        <hr>
 
         <!-- Comments Form -->
         <div class="card my-4">

@@ -53,6 +53,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapRolesRoutes();
 
         $this->mapPermissionsRoutes();
+
+        $this->mapCategoriesRoutes();
         //
     }
 
@@ -113,6 +115,14 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/web/permissions.php'));
     }
+    protected function mapCategoriesRoutes()
+    {
+        Route::prefix('admin') //i think this avoids the whole /admin/ that you have to put in routes
+            ->middleware('web','auth','role:admin')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web/categories.php'));
+    }
+
 
 
 }

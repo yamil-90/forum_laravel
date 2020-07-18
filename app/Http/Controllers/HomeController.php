@@ -25,8 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('home', ['posts'=>$posts]);
+
+        return view('home', [ 'posts'=>Post::all(), 'categories'=>Category::all()]);
     }
     public function test(){
         return view('test',['posts'=>Post::all(),'categories'=>Category::all()]);
