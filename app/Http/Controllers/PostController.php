@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 use Illuminate\Support\Facades\Session;
 class PostController extends Controller
 {
@@ -17,7 +18,7 @@ class PostController extends Controller
 
     public function create(){
         $this->authorize('create', Post::class);
-    	return view('admin.posts.create'); //we return the view, with the post that we got from the previous page
+    	return view('admin.posts.create',['categories'=>Category::all()]); //we return the view, with the post that we got from the previous page
 
     }
 
@@ -27,7 +28,8 @@ class PostController extends Controller
          $inputs = request()->validate([
              'title'=> 'required|min:8|max:255',
              'post_image'=> 'file',
-             'body'=> 'required'
+             'body'=> 'required',
+             'category_id'=>'required'
          ]);
           if(request('post_image')){
               $inputs['post_image'] = request('post_image')->store('images');//esta poronga no solo me crea una carpeta llamada images sino que tambien lepone el puto nombre en la base de datos
@@ -44,7 +46,8 @@ class PostController extends Controller
         $inputs = request () ->validate([
             'title'=>'required|min:8|max:255',
             'post_image'=>'file',
-            'body'=>'required'
+            'body'=>'required',
+            'category_id'=>'required'
         ]);
         if(request('post_image')){
             $inputs['post_image'] = request('post_image')->store('images');//esta poronga no solo me crea una carpeta llamada images sino que tambien lepone el puto nombre en la base de datos
@@ -59,7 +62,7 @@ class PostController extends Controller
 	public function index(){
         //$posts = Post::all(); //here we get all the post of the page
         $posts = auth()->user()->posts()->paginate(5); //here we only get the post of the user that is loged in
-    	return view('admin.posts.index', ['posts'=>$posts]);
+    	return view('admin.posts.index', ['posts'=>$posts,'categories'=>Category::all()]);
     }
 
 
@@ -73,6 +76,6 @@ class PostController extends Controller
 
     public function edit(Post $post){
         $this->authorize('view',$post);
-        return view('admin.posts.editPost', ['post'=> $post]);
+        return view('admin.posts.editPost', ['post'=> $post,'categories'=>Category::all()]);
     }
 }

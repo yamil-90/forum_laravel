@@ -24,6 +24,7 @@
                       <th>Id</th>
                       <th>Title</th>
                       <th>Image</th>
+                      <th>Category</th>
                       <th>Author</th>
                       <th>Created at</th>
                       <th>Updated at</th>
@@ -35,6 +36,7 @@
                       <th>Id</th>
                       <th>Title</th>
                       <th>Image</th>
+                      <th>Category</th>
                       <th>Author</th>
                       <th>Created at</th>
                       <th>Updated at</th>
@@ -50,6 +52,8 @@
                          <img height="50px" src="{{asset($post->post_image)}}" alt="">
 
                         </td>
+                        <th>{{$post->category ? $post->category->name : 'No Category'}}</th>
+
                         <td>{{$post->user->name}}</td>
                         <td>{{$post->created_at ? $post->created_at->diffForHumans() : 'no date'}}</td>
                         <td>{{$post->updated_at ? $post->updated_at->diffForHumans() : 'no date'}}</td>

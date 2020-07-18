@@ -27,6 +27,15 @@
                 >
 
         </div>
+        <div class="form-group">
+            <label for="text">category</label>
+            <select type="select" name="category_id"  class="form-control" id="category">
+                <option value="{{$post->category_id}}" selected-disabled>{{$post->category ? $post->category->name : 'Select category'}}</option>
+                @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
+        </div>
 		<div class="form-group">
                 <div><img height="100px" src="{{asset($post->post_image)}}" alt=""></div>
 				<label for="file">Image</label>

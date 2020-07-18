@@ -16,20 +16,18 @@
 		<div class="form-group">
 			<label for="text">Title</label>
 			<input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Enter title">
-		</div>
+        </div>
 		<div class="form-group">
 				<label for="file">Image</label>
 				<input type="file" name="post_image" class="file-control-file" id="image">
         </div>
         <div class="form-group">
-            <label for="category">category</label>
-            <select type="select" name="post_category" class="form-control" id="category">
-                
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <label for="text">category</label>
+            <select type="select" name="category_id"  class="form-control" id="category">
+                <option value="" selected-disabled>Select a category</option>
+                @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
             </select>
         </div>
 		<div class="form-group mytextarea">

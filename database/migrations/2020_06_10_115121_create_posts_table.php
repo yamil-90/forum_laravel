@@ -16,6 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');//this will hold the whole tablet so when we delete the user the post is going to be deleted
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('post_image')->nullable();
             $table->text('body');
