@@ -55,7 +55,7 @@
                         <th>{{$category->name}}</th>
 
                         <th>
-                            
+
                             <form action="{{route('categories.destroy',$category)}}" method="post">
                                 @csrf
                                 @method('DELETE')

@@ -15,7 +15,7 @@ class RoleController extends Controller
         return view('admin.roles.index', ['roles'=>Role::all()]); // we add the roles argument so we can use it in the index
     }
     public function store(){
-        Request()->validate([
+        request()->validate([
             'name'=>['required','unique:roles,name']
         ]);
         Role::create([
