@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test')->name('test');
+Route::get('/api/hi',  'hello@hello')->name('hello');
 
 Route::middleware('auth')->group(function(){
 	Route::get('/admin', 'AdminsController@index')->name('admin.index'); // this will change the name of the route acordingly if we decide to change the endpoint

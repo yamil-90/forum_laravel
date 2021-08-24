@@ -1,16 +1,14 @@
-<x-home-master>
 
-	@section('content')
 
-		<h1>Post!!!</h1>
+		<h1></h1>
 
         <!-- Title -->
-        <h1 class="mt-4">
+        <h1 class="mt-4 text-primary">
           {{$post->title}}</h1>
 
         <!-- Author -->
-        <p class="lead">by
-          <a href="#">{{$post->user->name}}</a>
+        <p class="lead">Made by {{$post->user->name." (".$post->user->role.")"}}
+          {{--<a href="#"></a>--}}
         </p>
 
         <hr>
@@ -31,6 +29,10 @@
         <hr>
 
         <!-- Comments Form -->
+        @if($post->comments=='[]')
+
+            <h3>No comments, be the first!</h3>
+        @endif
         @if(Auth::check())
         <div class="card my-4">
             <h5 class="card-header">Leave a Comment:</h5>
@@ -49,10 +51,12 @@
                 </form>
             </div>
         </div>
+            @else
+            <h5><a href="{{route('login')}}">Login to make comments</a></h5>
         @endif
 
-
         <!-- Single Comment -->
+
         @foreach ($post->comments as $comment)
         <div class="media mb-4">
             <img class="d-flex mr-3 rounded-circle" height="50" src="{{$comment->user->avatar ? $comment->user->avatar : 'http://placehold.it/50x50'}}" alt="">
@@ -126,6 +130,3 @@
           </div>
         </div> --}}
 
-	@endsection
-
-</x-home-master>

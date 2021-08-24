@@ -10,8 +10,8 @@ class PostController extends Controller
 {
     //
     public function show(Post $post){//here we are injecting the post class
-        $categories= Category::all();
-    	return view('blog-post', ['post'=>$post, 'categories'=>$categories]); //we return the view, with the post that we got from the previous page
+
+    	return view('home-post-expanded', ['post'=>$post, 'categories'=>Category::all()]); //we return the view, with the post that we got from the previous page
 
     }
 

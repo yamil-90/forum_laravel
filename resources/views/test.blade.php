@@ -1,4 +1,4 @@
-@extends('hijo')
+@extends('hello.blade.php')
 
 
 @yield('content')
