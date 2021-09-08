@@ -2,11 +2,13 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Post extends Model
 {
-    //
+    use Notifiable, HasFactory;
 
     protected $guarded = []; //this will allow us to create post with the data we want
     // to assign without having to add the fillables, but in production it is better to do it the other way

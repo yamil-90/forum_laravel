@@ -9,10 +9,13 @@ use Illuminate\Support\Facades\Session;
 class PostController extends Controller
 {
     //
-    public function show(Post $post){//here we are injecting the post class
-
+    public function show(Post $post){
     	return view('home-post-expanded', ['post'=>$post, 'categories'=>Category::all()]); //we return the view, with the post that we got from the previous page
-
+    }
+    public function showByCategory(category $category){
+        $posts = Post::where('category_id', $category->id)
+            ->paginate(10);
+    	return view('home-by-category', ['posts'=>$posts, 'category'=>$category->name, 'categories'=>Category::all()]);
     }
 
 

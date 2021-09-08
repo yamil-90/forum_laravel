@@ -98,35 +98,35 @@ class RouteServiceProvider extends ServiceProvider
     }
     protected function mapUsersRoutes()
     {
-        Route::prefix('admin') //i think this avoids the whole /admin/ that you have to put in routes
+        Route::prefix('admin') //this avoids the whole /admin/ that you have to put in routes
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web/users.php'));
     }
     protected function mapRolesRoutes()
     {
-        Route::prefix('admin') //i think this avoids the whole /admin/ that you have to put in routes
+        Route::prefix('admin') //this avoids the whole /admin/ that you have to put in routes
             ->middleware('web','auth','role:admin')
             ->namespace($this->namespace)
             ->group(base_path('routes/web/roles.php'));
     }
     protected function mapPermissionsRoutes()
     {
-        Route::prefix('admin') //i think this avoids the whole /admin/ that you have to put in routes
+        Route::prefix('admin') //this avoids the whole /admin/ that you have to put in routes
             ->middleware('web','auth','role:admin')
             ->namespace($this->namespace)
             ->group(base_path('routes/web/permissions.php'));
     }
     protected function mapCategoriesRoutes()
     {
-        Route::prefix('admin') //i think this avoids the whole /admin/ that you have to put in routes
+        Route::prefix('admin') //this avoids the whole /admin/ that you have to put in routes
             ->middleware('web','auth','role:admin')
             ->namespace($this->namespace)
             ->group(base_path('routes/web/categories.php'));
     }
     protected function mapCommentsRoutes()
     {
-        Route::prefix('admin') //i think this avoids the whole /admin/ that you have to put in routes
+        Route::prefix('admin') //this avoids the whole /admin/ that you have to put in routes
             ->middleware('web','auth')
             ->namespace($this->namespace)
             ->group(base_path('routes/web/comments.php'));

@@ -16,12 +16,14 @@
         <!-- Date/Time -->
         <p>Posted {{$post->created_at->diffForHumans()?? ''}}</p>
 
-        <hr>
+        @isset($post->post_image)
+            <hr>
 
-        <!-- Preview Image -->
-        <img class="img-fluid rounded" src="{{$post->post_image}}" alt="">
+            <!-- Preview Image -->
+            <img class="img-fluid rounded" src="{{$post->post_image}}" alt="">
 
-        <hr>
+            <hr>
+        @endisset
 
         <!-- Post Content -->
         <p class="lead">{{$post->body}}</p>
@@ -33,7 +35,7 @@
 
             <h3>No comments, be the first!</h3>
         @endif
-        @if(Auth::check())
+        @auth
         <div class="card my-4">
             <h5 class="card-header">Leave a Comment:</h5>
             <div class="card-body">
@@ -51,9 +53,10 @@
                 </form>
             </div>
         </div>
-            @else
+        @endauth
+        @guest
             <h5><a href="{{route('login')}}">Login to make comments</a></h5>
-        @endif
+        @endguest
 
         <!-- Single Comment -->
 
@@ -71,38 +74,56 @@
                     <div class="media mt-4">
                     <img class="d-flex mr-3 rounded-circle" height="50" src="{{$comment->user->avatar ? $comment->user->avatar : 'http://placehold.it/50x50'}}" alt="">
                     <div class="media-body">
-                      <h5 class="mt-0">{{$reply->author}}</h5>
+                      <h5 class="mt-0">{{$reply->author}}author</h5>
                        {{$reply->body}}
                     </div>
                     </div>
                   @endforeach
+                @auth()
+                    <div>
+                        <button class="btn btn-primary reply" type="button">Reply</button>
+                    </div>
+                    <form class="comment_reply" method="post" action="{{route('reply.store', [$comment])}}"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                        <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                        <input type="hidden" name="email" value="{{auth()->user()->email}}">
+                        <div class="row sm-3">
+
+                            <div class="form-group mytextarea">
+
+                                <textarea name="body" id="body" class="form-control " cols="20" rows="1"></textarea>
+                            </div>
+
+                            <div class="col sm-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
+                @endauth
             </div>
-
-
-
         </div>
 <!-- reply form -->
-@if(Auth::check())
-            <form method="post" action="{{route('reply.store', [$comment])}}" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="comment_id" value="{{$comment->id}}">
-                <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
-                <input type="hidden" name="email" value="{{auth()->user()->email}}">
-                <div class="row sm-3">
-                <div class="form-group mytextarea">
 
-                    <textarea name="body" id="body" class="form-control " cols="20" rows="1"></textarea>
-                </div>
-
-                <div class="col sm-3">
-                    <button type="submit" class="btn btn-primary">Reply</button>
-                 </div>
-                </div>
-            </form>
-
-@endif
         @endforeach
-
+        <style>
+            form.comment_reply {
+                display: none;
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                $(document).on('click', 'button.reply', function () {
+                    var closestDiv = $(this).closest('div'); // also you can use $(this).parent()
+                    //closestDiv.fadeOut();
+                    $('.comment_reply').not(closestDiv.next('.comment_reply')).hide();
+                    //$('.rep').closest('div').not(closestDiv).show()
+                    closestDiv.next('form.comment_reply').slideToggle(100);
+                });
+            });
+        </script>
 
         <!-- Comment with nested comments -->
         {{-- <div class="media mb-4">

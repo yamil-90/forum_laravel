@@ -17,19 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/test', 'HomeController@test')->name('test');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/test', [HomeController::class, 'test'])->name('test');
 Route::get('/api/hi',  'hello@hello')->name('hello');
 
 Route::middleware('auth')->group(function(){
-	Route::get('/admin', 'AdminsController@index')->name('admin.index'); // this will change the name of the route acordingly if we decide to change the endpoint
-
-
+	Route::get('/admin', [\App\Http\Controllers\AdminsController::class, 'index'])->name('admin.index'); // this will change the name of the route acordingly if we decide to change the endpoint
      //the name is used with blade, we add {{route('the.name.of.route')}} to go to that specific route in html
-       /*
-    to update files i use PUT
-    to view i use GET
-    to store i use POST
-    to delete
-    */
 });

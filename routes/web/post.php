@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/post/{post}', 'PostController@show')->name('post');
+Route::get('/post/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('post');
+Route::get('/postbycategory/{category}', [\App\Http\Controllers\PostController::class, 'showByCategory'])->name('post.by.category');
 Route::middleware('auth')->group(function(){
-    Route::get('/posts', 'PostController@index')->name('post.index');
-	Route::get('/posts/create', 'PostController@create')->name('post.create');
-    Route::post('/posts', 'PostController@store')->name('post.store');
+    Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index'])->name('post.index');
+	Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
+    Route::post('/posts', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
 
-    Route::delete('/posts/{post}/delete', 'PostController@destroy')->name('post.destroy');
-    Route::get('/posts/{post}/edit', 'PostController@edit')->middleware('can:view,post')->name('post.edit');//here we check if the user can see the post
-    Route::patch('/posts/{post}/update', 'PostController@update')->name('post.update');
+    Route::delete('/posts/{post}/delete', [\App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy');
+    Route::get('/posts/{post}/edit', [\App\Http\Controllers\PostController::class, 'edit'])->middleware('can:view,post')->name('post.edit');//here we check if the user can see the post
+    Route::patch('/posts/{post}/update', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
 });

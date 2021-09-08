@@ -16,8 +16,8 @@
                 <small>Posts</small>
             </h1>
             <!-- Blog Post -->
-            <x-home-posts :posts='$posts'/>
-
+            <x-home-postsbycategory :posts='$posts' :category="$category"/>
+            <a class="nav-link collapsed" href="{{route('categories.index')}}" >categories</a>
 
         </div>
 
@@ -71,11 +71,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="{{asset('vendor/jquery/jquery.js')}}"></script>
 <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
-<style>
-    body {
-      background-color: lightgray;
-    }
-</style>
+
 </body>
 
 </html>

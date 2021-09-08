@@ -1,7 +1,7 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Foro</a>
+        <a class="navbar-brand" href="{{route('home')}}">Foro</a>
         <button class="navbar-toggler" type="button"
                 data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false"
@@ -31,9 +31,6 @@
                 @endif
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>

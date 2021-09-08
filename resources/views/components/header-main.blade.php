@@ -17,5 +17,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
+    {{--jquery--}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
