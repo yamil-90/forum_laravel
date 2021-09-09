@@ -45,6 +45,7 @@ class PostController extends Controller
 
 
     public function update(Post $post){
+
         $this->authorize('update', $post);
         $inputs = request () ->validate([
             'title'=>'required|min:8|max:255',

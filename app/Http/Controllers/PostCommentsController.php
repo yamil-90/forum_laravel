@@ -64,9 +64,10 @@ class PostCommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comment $comment)
     {
         //
+        return view('admin.comments.editComment', ['comment'=> $comment]);
     }
 
     /**
@@ -76,9 +77,14 @@ class PostCommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Comment $comment)
     {
-        //
+        $inputs = request () ->validate([
+            'body'=>'required'
+            ]);
+        $comment->update($inputs);
+        session()->flash('post-updated-message', 'Comment was updated');
+        return redirect()->route('comments.index');
     }
 
     /**
