@@ -15,5 +15,5 @@ If you are an admin you can also:
 
 ## View the page
 
-You can check the page at *pending url*
+You can check the page at http://www.foro.yamilcoloma.xyz/
 create a user and mess around if you want, create new posts make some comments or whatever
